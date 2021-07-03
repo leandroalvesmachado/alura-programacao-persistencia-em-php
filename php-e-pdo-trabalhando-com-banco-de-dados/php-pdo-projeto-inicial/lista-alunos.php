@@ -22,7 +22,7 @@ $statement = $pdo->query("SELECT * FROM students;");
 
 $studentDataList = $statement->fetchAll(PDO::FETCH_ASSOC);
 $studentList = [];
-// var_dump($studentDataList);
+var_dump($studentDataList);
 
 foreach ($studentDataList as $studentData) {
     $studentList[] = new Student(
