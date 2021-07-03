@@ -11,18 +11,19 @@
 // Para ver os demais modos de busca e ler com mais detalhes os explicados aqui, você pode conferir a documentação oficial do PHP: PDOStatement::fetch.
 
 use Alura\Pdo\Domain\Model\Student;
+use Alura\Pdo\Infrastructure\Persistence\ConnectionCreator;
 
 require_once 'vendor/autoload.php';
 
-$databasePath = __DIR__ . '/banco.sqlite';
-$pdo = new PDO('sqlite:' . $databasePath);
+$pdo = ConnectionCreator::createConnection();
 
 $statement = $pdo->query("SELECT * FROM students;");
 
 
 $studentDataList = $statement->fetchAll(PDO::FETCH_ASSOC);
 $studentList = [];
-var_dump($studentDataList);
+
+// var_dump($studentDataList);
 
 foreach ($studentDataList as $studentData) {
     $studentList[] = new Student(
@@ -32,7 +33,7 @@ foreach ($studentDataList as $studentData) {
     );
 }
 
-// var_dump($studentList);
+var_dump($studentList);
 
 
 // retornando apenas 1 registro
