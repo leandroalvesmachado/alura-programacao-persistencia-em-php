@@ -5,6 +5,12 @@ $pdo = new PDO('sqlite:' . $caminhoBanco);
 
 echo 'Conectado';
 
+$pdo->exec(
+    "INSERT INTO phones (area_code, number, student_id) VALUES ('24', '9999999999', 1), ('85', '8888888888', 1)"
+);
+
+exit();
+
 $pdo->exec('
     CREATE TABLE IF NOT EXISTS students (
         id INTEGER PRIMARY KEY,
