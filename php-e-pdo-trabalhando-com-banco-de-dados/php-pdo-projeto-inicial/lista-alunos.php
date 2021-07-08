@@ -12,11 +12,13 @@
 
 use Alura\Pdo\Domain\Model\Student;
 use Alura\Pdo\Infrastructure\Persistence\ConnectionCreator;
+use Alura\Pdo\Infrastructure\Repository\PdoStudentRepository;
 
 require_once 'vendor/autoload.php';
 
 $pdo = ConnectionCreator::createConnection();
 
+/*
 $statement = $pdo->query("SELECT * FROM students;");
 
 
@@ -51,3 +53,11 @@ while ($studentData = $statement->fetch(PDO::FETCH_ASSOC)) {
 
     echo $student->age() . PHP_EOL;
 }
+*/
+
+// forma melhor
+$repository = new PdoStudentRepository($pdo);
+$studentList = $repository->allStudents();
+
+var_dump($studentList);
+
